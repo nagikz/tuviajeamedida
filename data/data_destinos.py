@@ -1,0 +1,42 @@
+DESTINOS = [
+    {
+        "id": "kioto",
+        "nombre": "Kioto",
+        "pais": "Japón",
+        "entorno": "ciudad",  # playa, montaña, ciudad
+        "temporada_alta": "Primavera",
+        "requiere_visado": False,
+        "consejo": "La moneda local es el yen y recomendamos llevar siempre efectivo para el acceso a los templos tradicionales.",
+        "imagen": "https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?auto=format&fit=crop&w=800&q=80",
+    },
+    {
+        "id": "islas-lofoten",
+        "nombre": "Islas Lofoten",
+        "pais": "Noruega",
+        "entorno": "montaña",
+        "temporada_alta": "Invierno",
+        "requiere_visado": False,
+        "consejo": "Es imprescindible viajar con ropa térmica extrema y calzado impermeable.",
+        "imagen": "https://images.unsplash.com/photo-1517411032315-54ef2cb783bb?auto=format&fit=crop&w=800&q=80",
+    },
+    {
+        "id": "zanzibar",
+        "nombre": "Zanzíbar",
+        "pais": "Tanzania",
+        "entorno": "playa",
+        "temporada_alta": "Verano",
+        "requiere_visado": True,
+        "consejo": None,
+        "imagen": "https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=800&q=80",
+    },
+    {
+        "id": "playa-del-carmen",
+        "nombre": "Playa del Carmen",
+        "pais": "México",
+        "entorno": "playa",
+        "temporada_alta": "Verano",
+        "requiere_visado": False,
+        "consejo": "La moneda es el peso mexicano, aunque aceptan dólares en casi todas las zonas turísticas.",
+        "imagen": "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=800&q=80",
+    },
+]

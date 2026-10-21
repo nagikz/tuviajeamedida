@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="error-container">
+    <h2>404 - Contenido No Encontrado</h2>
+    <p>Lo sentimos, el recurso o página que estás buscando no existe o ha sido retirado de nuestro catálogo.</p>
+    <br>
+    <a href="{{ url_for('index') }}" class="btn">Regresar a la Página de Inicio</a>
+</div>
+{% endblock %}

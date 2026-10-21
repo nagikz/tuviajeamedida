@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>{{ actividad.nombre }}</h2>
+<p><strong>Descripción:</strong> {{ actividad.descripcion }}</p>
+<p><strong>Duración aproximada:</strong> {{ actividad.duracion_horas }} horas</p>
+<p><strong>Precio por persona:</strong> {{ actividad.precio_persona }} €</p>
+
+{% if actividad.dificultad %}
+<p><strong>Nivel de dificultad física:</strong> {{ actividad.dificultad }}</p>
+{% endif %}
+{% if actividad.edad_minima %}
+<p><strong>Edad mínima recomendada:</strong> {{ actividad.edad_minima }} años</p>
+{% endif %}
+
+<br>
+<a href="{{ url_for('destino_detalle', destino_id=destino.id) }}" class="btn btn-secondary">
+    ⬅ Ver guía completa del destino {{ destino.nombre }}
+</a>
+{% endblock %}

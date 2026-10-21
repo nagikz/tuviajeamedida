@@ -1,0 +1,68 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>Comparador de Alojamientos</h2>
+<p>Busca y filtra entre todos nuestros hospedajes según tus exigencias de estancia y presupuesto por noche.</p>
+
+<div class="filter-box">
+    <form method="GET" action="{{ url_for('comparador_alojamientos') }}">
+        <div style="display: flex; gap: 1.5rem; align-items: center; flex-wrap: wrap;">
+            <label>
+                <strong>Modalidad:</strong>
+                <select name="tipo">
+                    <option value="">Cualquier tipo</option>
+                    <option value="hotel" {% if tipo=='hotel' %}selected{% endif %}>Hotel</option>
+                    <option value="hostal" {% if tipo=='hostal' %}selected{% endif %}>Hostal</option>
+                    <option value="cabaña" {% if tipo=='cabaña' %}selected{% endif %}>Cabaña</option>
+                    <option value="apartamento" {% if tipo=='apartamento' %}selected{% endif %}>Apartamento</option>
+                </select>
+            </label>
+
+            <label>
+                <strong>Presupuesto Máximo/Noche (€):</strong>
+                <input type="number" name="precio_max" value="{{ precio_max if precio_max is not none else '' }}"
+                    placeholder="Ej: 150" min="0">
+            </label>
+
+            <label style="cursor: pointer;">
+                <input type="checkbox" name="con_desayuno" value="1" {% if con_desayuno %}checked{% endif %}>
+                <strong>Desayuno incluido</strong>
+            </label>
+
+            <label style="cursor: pointer;">
+                <input type="checkbox" name="admite_mascotas" value="1" {% if admite_mascotas %}checked{% endif %}>
+                <strong>Admite mascotas</strong>
+            </label>
+
+            <button type="submit" class="btn">Buscar Alojamientos</button>
+            <a href="{{ url_for('comparador_alojamientos') }}" style="margin-left: 10px; font-size: 0.9rem;">Limpiar
+                filtros</a>
+        </div>
+    </form>
+</div>
+
+<h3>Alojamientos Encontrados ({{ alojamientos|length }})</h3>
+
+{% if alojamientos %}
+<div class="grid">
+    {% for alojamiento in alojamientos %}
+    <div class="card">
+        <div>
+            <h4>{{ alojamiento.nombre }}</h4>
+            <p><strong>Tipo:</strong> {{ alojamiento.tipo|capitalize }}</p>
+            <p><strong>Precio:</strong> {{ alojamiento.precio_noche }} € / noche</p>
+            <p><strong>Categoría:</strong> {% if alojamiento.estrellas %}{{ alojamiento.estrellas }} {% else %}Sin
+                estrellas{% endif %}</p>
+            <p><strong>Servicios:</strong>
+                {% if alojamiento.incluye_desayuno %} Desayuno{% endif %}
+                {% if alojamiento.admite_mascotas %} Mascotas{% endif %}
+            </p>
+        </div>
+        <a href="{{ url_for('alojamiento_detalle', alojamiento_id=alojamiento.id) }}" class="btn">Ver Detalles</a>
+    </div>
+    {% endfor %}
+</div>
+{% else %}
+<p>No encontramos ningún alojamiento que se ajuste a tus requisitos seleccionados.</p>
+{% endif %}
+{% endblock %}

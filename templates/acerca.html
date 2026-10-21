@@ -1,0 +1,89 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="acerca-container">
+    <h2>Acerca de Nosotros</h2>
+    <p class="subtitle">Conecta con el mundo a través de experiencias diseñadas a tu medida.</p>
+
+    <!-- Historia y Filosofía -->
+    <section class="section-block">
+        <h3>Nuestra Historia y Filosofía</h3>
+        <p>
+            Nacimos con la pasión de transformar el concepto de viajar. En <strong>Tu Viaje a Medida</strong>,
+            creemos que cada viajero es único y que ninguna aventura debe empaquetarse en un molde estándar.
+            Nos especializamos en el turismo de calidad, diseñando itinerarios personalizados que combinan
+            autenticidad, confort y una profunda inmersión en la cultura local.
+        </p>
+        <p>
+            Nuestra filosofía se basa en escuchar tus deseos y prioridades para recomendarte únicamente los
+            destinos, alojamientos y excursiones que se adaptan a tu presupuesto y estilo de viaje.
+        </p>
+    </section>
+
+    <!-- Equipo Humano -->
+    <section class="section-block">
+        <h3>Nuestro Equipo</h3>
+        <p>
+            Contamos con un equipo multidisciplinar de asesores de viajes, guías locales y apasionados del turismo
+            que trabajan cada día para garantizar que tus vacaciones sean inolvidables. Desde la selección de nuestros
+            alojamientos colaboradores hasta la organización de actividades exclusivas, cuidamos cada detalle.
+        </p>
+    </section>
+
+    <!-- Datos de Contacto y Atención al Cliente -->
+    <section class="section-block contacto-box">
+        <h3>Datos de Contacto y Atención al Cliente</h3>
+        <div class="contacto-grid">
+            <div class="contacto-item">
+                <strong>Dirección Física de la Oficina:</strong>
+                <p>Calle Paseo de la Castellana 120, Planta 4<br>28046, Madrid, España</p>
+            </div>
+            <div class="contacto-item">
+                <strong>Teléfono de Atención al Cliente:</strong>
+                <p>+34 912 345 678</p>
+            </div>
+            <div class="contacto-item">
+                <strong>Horario Comercial:</strong>
+                <p>Lunes a Viernes: 09:00 - 19:00 h<br>Sábados: 10:00 - 14:00 h</p>
+            </div>
+        </div>
+    </section>
+</div>
+
+<style>
+    .acerca-container {
+        max-width: 900px;
+        margin: 0 auto;
+    }
+
+    .subtitle {
+        font-size: 1.1rem;
+        color: #4b5563;
+        margin-bottom: 2rem;
+    }
+
+    .section-block {
+        background: white;
+        padding: 1.8rem;
+        border-radius: 8px;
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        margin-bottom: 2rem;
+    }
+
+    .contacto-box {
+        border-left: 4px solid var(--secondary, #0d9488);
+    }
+
+    .contacto-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+        gap: 1.5rem;
+        margin-top: 1rem;
+    }
+
+    .contacto-item p {
+        margin: 0.5rem 0 0 0;
+        color: #374151;
+    }
+</style>
+{% endblock %}

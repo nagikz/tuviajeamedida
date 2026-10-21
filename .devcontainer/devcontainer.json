@@ -1,0 +1,29 @@
+{
+  "name": "Entorno Python con uv",
+  "dockerComposeFile": [
+    "../docker-compose.yml"
+  ],
+  "service": "web",
+  "workspaceFolder": "/app",
+  "overrideCommand": true,
+  "command": "sleep infinity",
+  "features": {
+    "ghcr.io/devcontainers/features/git:1": {}
+  },
+  "customizations": {
+    "vscode": {
+      "settings": {
+        // Le decimos a VS Code dónde está el Python que instaló uv
+        "python.defaultInterpreterPath": "/app/.venv/bin/python",
+        "editor.formatOnSave": true
+      },
+      "extensions": [
+        "ms-python.python", // Soporte base de Python
+        "ms-python.vscode-pylance", // Autocompletado inteligente
+        "charliermarsh.ruff" // El linter/formateador más rápido actual, de los creadores de uv
+      ]
+    }
+  },
+  // (Opcional) Si quieres que uv actualice dependencias automáticamente al abrir el contenedor
+  "postCreateCommand": "uv sync"
+}

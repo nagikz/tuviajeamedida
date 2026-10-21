@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tu Viaje a Medida - Agencia de Viajes</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body>
+    <header>
+        <h1>Tu Viaje a Medida</h1>
+        <nav>
+            <a href="{{ url_for('index') }}">Inicio</a>
+            <a href="{{ url_for('acerca') }}">Acerca de Nosotros</a>
+            <a href="{{ url_for('listado_destinos') }}">Destinos</a>
+            <a href="{{ url_for('listado_alojamientos') }}">Alojamientos</a>
+            <a href="{{ url_for('listado_actividades') }}">Actividades</a>
+            <a href="{{ url_for('explorador_destinos') }}">Explorador</a>
+            <a href="{{ url_for('comparador_alojamientos') }}">Comparador</a>
+            <a href="{{ url_for('viaje_a_medida') }}"><strong>Viaje a Medida</strong></a>
+        </nav>
+    </header>
+
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+</body>
+
+</html>

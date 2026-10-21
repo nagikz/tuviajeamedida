@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>Listado General de Alojamientos</h2>
+<ul>
+    {% for alojamiento in alojamientos %}
+    <li>
+        <a href="{{ url_for('alojamiento_detalle', alojamiento_id=alojamiento.id) }}">
+            <strong>{{ alojamiento.nombre }}</strong> - Tipo: {{ alojamiento.tipo|capitalize }}
+        </a>
+    </li>
+    {% endfor %}
+</ul>
+{% endblock %}

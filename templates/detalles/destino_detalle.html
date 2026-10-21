@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>{{ destino.nombre }} ({{ destino.pais }})</h2>
+<img src="{{ destino.imagen }}" alt="{{ destino.nombre }}"
+    style="max-width: 100%; height: 300px; object-fit: cover; border-radius: 8px;">
+
+<div style="margin-top: 1rem;">
+    <p><strong>Entorno natural:</strong> {{ destino.entorno|capitalize }}</p>
+    <p><strong>Temporada Alta:</strong> {{ destino.temporada_alta }}</p>
+    <p><strong>Requisito de Visado:</strong> {% if destino.requiere_visado %}Sí, visa obligatoria{% else %}No requiere
+        visado previo{% endif %}</p>
+    {% if destino.consejo %}
+    <p><strong>Consejo adicional para el viajero:</strong> {{ destino.consejo }}</p>
+    {% endif %}
+</div>
+
+<hr>
+
+<h3>Alojamientos Disponibles en {{ destino.nombre }}</h3>
+{% if alojamientos %}
+<ul>
+    {% for a in alojamientos %}
+    <li><a href="{{ url_for('alojamiento_detalle', alojamiento_id=a.id) }}">{{ a.nombre }}</a> ({{ a.tipo|capitalize }}
+        - {{ a.precio_noche }}€/noche)</li>
+    {% endfor %}
+</ul>
+{% else %}
+<p><em>Actualmente no disponemos de alojamientos contratados en este destino.</em></p>
+{% endif %}
+
+<h3>Actividades en {{ destino.nombre }}</h3>
+{% if actividades %}
+<ul>
+    {% for act in actividades %}
+    <li><a href="{{ url_for('actividad_detalle', actividad_id=act.id) }}">{{ act.nombre }}</a> (Duración: {{
+        act.duracion_horas }}h - {{ act.precio_persona }}€/pers)</li>
+    {% endfor %}
+</ul>
+{% else %}
+<p><em>Actualmente no disponemos de actividades propias en este destino.</em></p>
+{% endif %}
+
+{% endblock %}

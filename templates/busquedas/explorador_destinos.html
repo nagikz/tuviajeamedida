@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>Explorador de Destinos</h2>
+<p>Encuentra tu próximo lugar de vacaciones filtrando según el entorno que buscas y los requisitos de visado.</p>
+
+<div class="filter-box">
+    <form method="GET" action="{{ url_for('explorador_destinos') }}">
+        <div style="display: flex; gap: 1.5rem; align-items: center; flex-wrap: wrap;">
+            <label>
+                <strong>Tipo de Entorno:</strong>
+                <select name="entorno">
+                    <option value="">Todos los entornos</option>
+                    <option value="playa" {% if entorno=='playa' %}selected{% endif %}>Playa</option>
+                    <option value="montaña" {% if entorno=='montaña' %}selected{% endif %}>Montaña</option>
+                    <option value="ciudad" {% if entorno=='ciudad' %}selected{% endif %}>Ciudad</option>
+                </select>
+            </label>
+
+            <label style="cursor: pointer;">
+                <input type="checkbox" name="sin_visado" value="1" {% if sin_visado %}checked{% endif %}>
+                <strong>Solo destinos que NO exijan visado previo</strong>
+            </label>
+
+            <button type="submit" class="btn">Filtrar Destinos</button>
+            <a href="{{ url_for('explorador_destinos') }}" style="margin-left: 10px; font-size: 0.9rem;">Limpiar
+                filtros</a>
+        </div>
+    </form>
+</div>
+
+<h3>Resultados ({{ destinos|length }})</h3>
+
+{% if destinos %}
+<div class="grid">
+    {% for destino in destinos %}
+    <div class="card">
+        {% if destino.imagen %}
+        <img src="{{ destino.imagen }}" alt="{{ destino.nombre }}">
+        {% endif %}
+        <div style="padding-top: 1rem;">
+            <h4>{{ destino.nombre }} ({{ destino.pais }})</h4>
+            <p><strong>Entorno:</strong> {{ destino.entorno|capitalize }}</p>
+            <p><strong>Temporada Alta:</strong> {{ destino.temporada_alta }}</p>
+            <p><strong>Visado:</strong> {% if destino.requiere_visado %}Requiere Visado{% else %}Sin Visado{% endif %}
+            </p>
+        </div>
+        <a href="{{ url_for('destino_detalle', destino_id=destino.id) }}" class="btn btn-secondary">Ver Ficha
+            Completa</a>
+    </div>
+    {% endfor %}
+</div>
+{% else %}
+<p>No se encontraron destinos que coincidan con los criterios seleccionados.</p>
+{% endif %}
+{% endblock %}

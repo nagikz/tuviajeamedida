@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>Asistente de "Viaje a Medida"</h2>
+<div class="filter-box">
+    <form method="GET" action="{{ url_for('viaje_a_medida') }}">
+        <h4>1. Preferencias del Destino</h4>
+        <label>Entorno:
+            <select name="entorno">
+                <option value="">Cualquiera</option>
+                <option value="playa" {% if entorno=='playa' %}selected{% endif %}>Playa</option>
+                <option value="montaña" {% if entorno=='montaña' %}selected{% endif %}>Montaña</option>
+                <option value="ciudad" {% if entorno=='ciudad' %}selected{% endif %}>Ciudad</option>
+            </select>
+        </label>
+        <label><input type="checkbox" name="sin_visado" value="1" {% if sin_visado %}checked{% endif %}> Sin necesidad
+            de visado previo</label>
+
+        <h4>2. Exigencias de Estancia</h4>
+        <label>Tipo de Alojamiento:
+            <select name="tipo_alojamiento">
+                <option value="">Cualquiera</option>
+                <option value="hotel" {% if tipo_alojamiento=='hotel' %}selected{% endif %}>Hotel</option>
+                <option value="hostal" {% if tipo_alojamiento=='hostal' %}selected{% endif %}>Hostal</option>
+                <option value="cabaña" {% if tipo_alojamiento=='cabaña' %}selected{% endif %}>Cabaña</option>
+                <option value="apartamento" {% if tipo_alojamiento=='apartamento' %}selected{% endif %}>Apartamento
+                </option>
+            </select>
+        </label>
+        <label>Presupuesto Máximo/Noche (€): <input type="number" name="precio_max"
+                value="{{ precio_max if precio_max else '' }}"></label>
+        <label><input type="checkbox" name="con_desayuno" value="1" {% if con_desayuno %}checked{% endif %}> Requiere
+            Desayuno Incluido</label>
+
+        <br><br>
+        <button type="submit" class="btn">Buscar Combinaciones Válidas</button>
+    </form>
+</div>
+
+{% if busqueda_realizada %}
+<h3>Resultados de Combinaciones Recomendadas</h3>
+{% if combinaciones %}
+<div class="grid">
+    {% for c in combinaciones %}
+    <div class="card">
+        <h4>{{ c.destino.nombre }} + {{ c.alojamiento.nombre }}</h4>
+        <p><strong>Destino:</strong> {{ c.destino.nombre }} ({{ c.destino.pais }}) - {{ c.destino.entorno|capitalize }}
+        </p>
+        <p><strong>Alojamiento:</strong> {{ c.alojamiento.nombre }} ({{ c.alojamiento.precio_noche }}€/noche)</p>
+        <div>
+            <a href="{{ url_for('destino_detalle', destino_id=c.destino.id) }}" class="btn btn-secondary">Ver
+                Destino</a>
+            <a href="{{ url_for('alojamiento_detalle', alojamiento_id=c.alojamiento.id) }}" class="btn">Ver
+                Alojamiento</a>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% else %}
+<p>No se encontraron combinaciones de Destino + Alojamiento que cumplan <strong>todos</strong> los criterios
+    seleccionados.</p>
+{% endif %}
+{% endif %}
+{% endblock %}

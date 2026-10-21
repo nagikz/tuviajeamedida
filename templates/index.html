@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>Bienvenido a tu próxima aventura</h2>
+<p>Diseñamos experiencias únicas adaptadas totalmente a tus gustos y presupuesto. Explora nuestra amplia oferta
+    comercial:</p>
+
+<div class="kpi-container">
+    <div class="kpi-card">
+        <div class="kpi-number">{{ totales.destinos }}</div>
+        <div>Destinos Disponibles</div>
+    </div>
+    <div class="kpi-card">
+        <div class="kpi-number">{{ totales.alojamientos }}</div>
+        <div>Alojamientos Registrados</div>
+    </div>
+    <div class="kpi-card">
+        <div class="kpi-number">{{ totales.actividades }}</div>
+        <div>Actividades Únicas</div>
+    </div>
+</div>
+
+<div style="margin-top: 3rem;">
+    <h3>¿Buscas una recomendación directa?</h3>
+    <a href="{{ url_for('viaje_a_medida') }}" class="btn">Probar Asistente "Viaje a Medida"</a>
+</div>
+{% endblock %}
